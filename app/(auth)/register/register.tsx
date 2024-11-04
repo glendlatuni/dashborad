@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Lock, User, Phone, Eye, EyeOff } from "lucide-react";
+import { useNewMemberReg } from "@/lib/useNewMemberReg";
 
 const schema = z.object({
   Email: z.string().email({ message: "Invalid email address" }),
@@ -31,6 +32,7 @@ type FormData = z.infer<typeof schema>;
 
 const RegisterPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { registerNewUser: registerNewMember } = useNewMemberReg();
   const {
     register,
     handleSubmit,
@@ -42,7 +44,12 @@ const RegisterPage: React.FC = () => {
 
   
   const onSubmit = async (data: FormData) => {
-    console.log(data);
+
+    registerNewMember(data);
+
+
+
+    
   };
 
   return (

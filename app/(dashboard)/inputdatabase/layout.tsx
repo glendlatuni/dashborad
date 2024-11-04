@@ -1,3 +1,5 @@
+
+import { Toaster } from "@/components/ui/toaster";
 import Navbar from "./navbar";
 
 export default function InputDatabaseLayout({
@@ -13,6 +15,7 @@ export default function InputDatabaseLayout({
       <div className="mt-8">
         
       {children}
+   <Toaster/>
       </div>
     </>
   );

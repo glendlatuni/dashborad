@@ -16,10 +16,21 @@ import {
 type Family = {
   id: string;
   FamilyName: string;
-  Rayon: number;
-  KSP: string;
+  Rayon: Rayon;
+  KSP: KSP;
   Address: string;
 };
+
+type Rayon={
+  id: string;
+  rayonNumber: number;
+
+}
+
+type KSP = {
+  id: string;
+  kspname : string
+}
 
 import React from "react";
 import { TableSkeleton } from "./tableSkeleton";
@@ -30,6 +41,9 @@ const TableView = () => {
   const { loading, error, data } = useQuery(GET_ALL_FAMILY_QUERY);
 
   const family = data?.queryGetFamily;
+
+
+  console.log(family)
 
   if (loading) return <TableSkeleton />;
 
@@ -55,8 +69,8 @@ const TableView = () => {
                 <Link href={`/viewdata/${family.id}`}>{family.FamilyName}</Link>
               </TableCell>
 
-              <TableCell>{family.Rayon}</TableCell>
-              <TableCell>{family.KSP}</TableCell>
+              <TableCell>{family.Rayon.rayonNumber}</TableCell>
+              <TableCell>{family.KSP.kspname}</TableCell>
               <TableCell>{family.Address}</TableCell>
             </TableRow>
           ))}

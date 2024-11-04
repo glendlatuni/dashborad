@@ -9,7 +9,14 @@ import { LOGIN_MUTATION } from "@/graphQL/Mutation/Mutation";
 export function useLogin() {
   const client = useApolloClient();
   const router = useRouter();
-  const [loginMutation] = useMutation(LOGIN_MUTATION);
+  const [loginMutation] = useMutation(LOGIN_MUTATION,{
+    onError: (error) => {
+      console.error("Login error:", error);
+      return error;
+    
+      
+    }
+  });
 
   const login = async (email: string, password: string) => {
     try {

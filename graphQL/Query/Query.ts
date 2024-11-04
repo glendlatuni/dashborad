@@ -18,22 +18,42 @@ export const GET_FAMILY_QUERY = gql`
         Liturgos
       }
       Address
-      KSP
-      Rayon
+      KSP {
+      id
+      kspname
+    }
+    Rayon {
+      id
+      rayonNumber
+      church {
+        id
+        name
+      }
+    }
     }
   }
 `;
 
 export const GET_ALL_FAMILY_QUERY = gql`
   query QueryGetFamily {
-    queryGetFamily {
-      Address
+  queryGetFamily {
+    Address
+    id
+    FamilyName
+    KSP {
       id
-      FamilyName
-      KSP
-      Rayon
+      kspname
+    }
+    Rayon {
+      id
+      rayonNumber
+      church {
+        id
+        name
+      }
     }
   }
+}
 `;
 
 export const GET_FAMILIES_FOR_REGISTRATION = gql`
@@ -73,6 +93,7 @@ export const GET_FAMILY_MEMBERS = gql`
 query QueryGetFamilyByID($queryGetFamilyByIdId: ID!) {
   queryGetFamilyByID(id: $queryGetFamilyByIdId) {
     FamilyMembers {
+      id
       FullName
       Gender
       Category
@@ -109,4 +130,34 @@ query GetMemberByID($getMemberByIdId: ID!) {
     }
   }
 }
+`
+
+
+export const GET_ALL_RAYONS = gql`
+query QueryGetAllRayons {
+  queryGetAllRayons {
+    id
+    rayonNumber
+    ksps {
+      kspname
+    }
+  }
+}`
+
+
+export const GET_RAYON_BY_ID = gql`
+query QueryGetKSPbyRayonID($queryGetKsPbyRayonIdId: String!) {
+  queryGetKSPbyRayonID(id: $queryGetKsPbyRayonIdId) {
+    id
+    rayonNumber
+    church {
+      name
+    }
+    ksps {
+      id
+      kspname
+    }
+    }
+  }
+
 `

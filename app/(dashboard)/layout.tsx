@@ -22,6 +22,7 @@ export default function DashboardLayout({
           {/* right */}
           <Navbar/>
           {children}
+
         </div>
       </div>
     </>
